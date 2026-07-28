@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hourly-to-salary.tabutility.com/sitemap.xml
