@@ -60,7 +60,7 @@ input[type="number"],select,button{min-height:44px;box-sizing:border-box}
     }
     }
     </script>
-      <meta name="robots" content="noindex, follow">
+      <meta name="robots" content="index, follow">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7039091592734005" crossorigin="anonymous"></script>
 </head>
 <body style="margin:0;background:#f8faff;font-family:'Segoe UI',Arial,sans-serif">
@@ -238,7 +238,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(<App />);
     <div style="max-width:860px;margin:0 auto;font-family:system-ui,-apple-system,sans-serif;line-height:1.7;">
       <h2 style="font-size:2rem;font-weight:700;color:#f1f5f9;margin-bottom:24px;">How to Use the Hourly to Salary Calculator</h2>
       <p style="margin-bottom:16px;color:#cbd5e1;">The Hourly to Salary Calculator converts between an hourly wage and annual salary in both directions. Whether you're comparing job offers, calculating your equivalent hourly rate from a salaried role, or planning a career change, this tool gives you an instant accurate conversion.</p>
-      <p style="margin-bottom:16px;color:#cbd5e1;">Enter your hourly rate and weekly hours (or your annual salary and typical hours) to see the full breakdown: hourly, daily, weekly, fortnightly, monthly, and annual figures. You can also adjust for the number of paid weeks per year and whether overtime is included.</p>
+      <p style="margin-bottom:16px;color:#cbd5e1;">Enter your hourly rate and weekly hours, or switch to annual salary, and adjust paid weeks per year. Results are gross amounts before tax and deductions. The daily equivalent assumes five working days per week; there is no separate overtime-premium calculation.</p>
       <p style="margin-bottom:16px;color:#cbd5e1;">A key nuance is paid leave: a £15/hour wage for 40 hours/week over 52 weeks is £31,200, but if you're paid for only 47 weeks (5 weeks unpaid holiday), your actual annual income is £28,200. Many freelancers and contractors forget to account for unpaid leave when comparing themselves to employed peers.</p>
 
       <div style="background:#0f172a;border:1px solid #334155;border-radius:12px;padding:28px;margin:32px 0;">
@@ -257,7 +257,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(<App />);
         <li style="padding:8px 0;border-bottom:1px solid #1e293b;color:#cbd5e1;">✅ Comparing an hourly rate job offer with a salaried position</li>
         <li style="padding:8px 0;border-bottom:1px solid #1e293b;color:#cbd5e1;">✅ Working out your equivalent hourly rate from your annual salary</li>
         <li style="padding:8px 0;border-bottom:1px solid #1e293b;color:#cbd5e1;">✅ Calculating your daily rate for freelance or contract work</li>
-        <li style="padding:8px 0;border-bottom:1px solid #1e293b;color:#cbd5e1;">✅ Understanding how overtime at time-and-a-half affects annual earnings</li>
+        <li style="padding:8px 0;border-bottom:1px solid #1e293b;color:#cbd5e1;">✅ Comparing gross earnings using different weekly hours and paid weeks</li>
         <li style="padding:8px 0;border-bottom:1px solid #1e293b;color:#cbd5e1;">✅ Comparing part-time vs full-time earnings at the same hourly rate</li>
         <li style="padding:8px 0;border-bottom:1px solid #1e293b;color:#cbd5e1;">✅ Converting a salary offer into comparable hourly rates across currencies</li>
       </ul>
@@ -268,8 +268,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(<App />);
         <p style="color:#cbd5e1;margin:0;">Multiply your hourly rate × hours per week × weeks worked per year. For a standard full-time job: £15/hour × 40 hours × 52 weeks = £31,200/year. If you take unpaid leave, use 47 or 48 paid weeks instead of 52.</p>
       </div>
       <div style="margin-bottom:24px;">
-        <h4 style="font-size:1rem;font-weight:600;color:#f1f5f9;margin-bottom:8px;">What is a good hourly rate in the UK in 2025?</h4>
-        <p style="color:#cbd5e1;margin:0;">The UK National Living Wage is £12.21/hour (2025/26) for workers aged 21+. The Real Living Wage (voluntary) is £12.60 nationally and £13.85 in London. Average UK full-time hourly earnings are around £18–£20/hour. What's 'good' depends on your sector, location, and experience.</p>
+        <h4 style="font-size:1rem;font-weight:600;color:#f1f5f9;margin-bottom:8px;">How should I compare hourly pay offers?</h4>
+        <p style="color:#cbd5e1;margin:0;">Compare gross pay using the same paid weeks and hours, then consider benefits, paid leave, location and job responsibilities. Minimum wage rates change and depend on age and other conditions; check the current GOV.UK rates rather than treating this converter as a wage-compliance checker.</p>
       </div>
       <div style="margin-bottom:24px;">
         <h4 style="font-size:1rem;font-weight:600;color:#f1f5f9;margin-bottom:8px;">How does the hourly to salary conversion differ for part-time workers?</h4>
@@ -277,7 +277,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(<App />);
       </div>
       <div style="margin-bottom:24px;">
         <h4 style="font-size:1rem;font-weight:600;color:#f1f5f9;margin-bottom:8px;">Should freelancers charge more than their equivalent employed hourly rate?</h4>
-        <p style="color:#cbd5e1;margin:0;">Yes, significantly more. As a freelancer you pay both employee and employer National Insurance, fund your own pension, holiday, sick pay, equipment, insurance, and non-billable time (admin, marketing, downtime). A freelancer needing a £35,000 equivalent take-home typically needs to charge £50–£70/hour.</p>
+        <p style="color:#cbd5e1;margin:0;">Freelance rates need to account for unpaid leave, pension contributions, equipment, insurance and non-billable time. UK National Insurance treatment depends on whether you are self-employed or employed through a company; sole traders do not simply pay both employee and employer NI. There is no universal freelance rate that guarantees a particular take-home salary.</p>
       </div>
       <div style="margin-bottom:24px;">
         <h4 style="font-size:1rem;font-weight:600;color:#f1f5f9;margin-bottom:8px;">What is a day rate and how is it calculated?</h4>
@@ -300,10 +300,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(<App />);
     },
     {
       "@type": "Question",
-      "name": "What is a good hourly rate in the UK in 2025?",
+      "name": "How should I compare hourly pay offers?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The UK National Living Wage is £12.21/hour (2025/26) for workers aged 21+. The Real Living Wage (voluntary) is £12.60 nationally and £13.85 in London. Average UK full-time hourly earnings are around £18–£20/hour. What's 'good' depends on your sector, location, and experience."
+        "text": "Compare gross pay using the same paid weeks and hours, then consider benefits, paid leave, location and job responsibilities. Minimum wage rates change and depend on age and other conditions; check the current GOV.UK rates rather than treating this converter as a wage-compliance checker."
       }
     },
     {
@@ -319,7 +319,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(<App />);
       "name": "Should freelancers charge more than their equivalent employed hourly rate?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, significantly more. As a freelancer you pay both employee and employer National Insurance, fund your own pension, holiday, sick pay, equipment, insurance, and non-billable time (admin, marketing, downtime). A freelancer needing a £35,000 equivalent take-home typically needs to charge £50–£70/hour."
+        "text": "Freelance rates need to account for unpaid leave, pension contributions, equipment, insurance and non-billable time. UK National Insurance treatment depends on whether you are self-employed or employed through a company; sole traders do not simply pay both employee and employer NI. There is no universal freelance rate that guarantees a particular take-home salary."
       }
     },
     {
