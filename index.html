@@ -36,6 +36,7 @@
 nav .brand{color:#fff}
 nav a:hover{color:#818cf8}
 input:focus,select:focus,textarea:focus{border-color:#818cf8!important}
+input[type="number"],select,button{min-height:44px;box-sizing:border-box}
 </style>
 <link rel="dns-prefetch" href="//unpkg.com">
 <script type="application/ld+json">
@@ -60,13 +61,14 @@ input:focus,select:focus,textarea:focus{border-color:#818cf8!important}
     }
     </script>
       <meta name="robots" content="noindex, follow">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7039091592734005" crossorigin="anonymous"></script>
 </head>
 <body style="margin:0;background:#f8faff;font-family:'Segoe UI',Arial,sans-serif">
 <div id="root"></div>
 <script type="text/babel">
 //<![CDATA[
 const { useState } = React;
-function fmt(n,d=2){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});}
+function fmt(n,d=2){return Number.isFinite(n)?'$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}):'—';}
 
 function App() {
   const [mode, setMode] = useState('hourly');
@@ -77,11 +79,14 @@ function App() {
 
   const totalHours = Number(hoursPerWeek) * Number(weeksPerYear);
 
-  const fromHourly = Number(hourly) * totalHours;
-  const fromAnnual = Number(annual) / (totalHours || 1);
+  const valid = [Number(hoursPerWeek), Number(weeksPerYear), Number(mode === 'hourly' ? hourly : annual)].every(Number.isFinite)
+    && Number(hoursPerWeek) > 0 && Number(hoursPerWeek) <= 168 && Number(weeksPerYear) > 0 && Number(weeksPerYear) <= 52.2
+    && Number(mode === 'hourly' ? hourly : annual) >= 0;
+  const fromHourly = valid ? Number(hourly) * totalHours : NaN;
+  const fromAnnual = valid ? Number(annual) / totalHours : NaN;
 
-  const displayAnnual = mode === 'hourly' ? fromHourly : Number(annual);
-  const displayHourly = mode === 'annual' ? fromAnnual : Number(hourly);
+  const displayAnnual = valid ? (mode === 'hourly' ? fromHourly : Number(annual)) : NaN;
+  const displayHourly = valid ? (mode === 'annual' ? fromAnnual : Number(hourly)) : NaN;
 
   const rows = [
     ['Annual Salary', fmt(displayAnnual, 0)],
@@ -90,7 +95,7 @@ function App() {
     ['Weekly', fmt(displayAnnual / Number(weeksPerYear), 0)],
     ['Daily (based on hrs/week)', fmt(displayHourly * Number(hoursPerWeek) / 5, 2)],
     ['Hourly Rate', fmt(displayHourly, 2)],
-    ['Total Hours / Year', `${totalHours.toLocaleString()} hrs`],
+    ['Total Hours / Year', valid ? `${totalHours.toLocaleString()} hrs` : 'Enter valid hours and weeks'],
   ];
 
   return (
@@ -225,7 +230,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 </div>
 <footer style="background:#1a1a2e;margin-top:48px;padding:28px 24px;text-align:center;font-family:'Segoe UI',system-ui,Arial,sans-serif;font-size:13px;color:#94a3b8;line-height:1.8">
 <div style="font-weight:700;color:#fff;font-size:15px">⚡ Tabutility</div>
-<div>Free, private, browser-based tools. No sign-up, no tracking.</div>
+<div>Free, browser-based tools. No sign-up. Advertising and analytics are explained in our privacy policy.</div>
 <div style="margin-top:6px"><a href="https://tabutility.com" style="color:#818cf8;font-weight:600;text-decoration:none">All Tools</a> · <a href="https://tabutility.com/blog/" style="color:#94a3b8;text-decoration:none">Blog</a> · <a href="https://tabutility.com/about/" style="color:#94a3b8;text-decoration:none">About</a> · <a href="https://tabutility.com/privacy-policy/" style="color:#94a3b8;text-decoration:none">Privacy</a> · <a href="https://tabutility.com/contact/" style="color:#94a3b8;text-decoration:none">Contact</a></div>
 <div style="margin-top:6px;color:#64748b">© 2026 Tabutility</div>
 
